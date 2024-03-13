@@ -9,14 +9,46 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from dotenv import load_dotenv
+import streamlit as st
 print("")
 print("************ New Run  ******************")
 #Set the key
+#os.environ["OPENAI_API_KEY"] = getpass.getpass()
+
+#Load the env file when working locally.  For streamlit, load secrets
+load_dotenv()
+
+#print(os.getenv('test_key'))
+#print(os.getenv('AI_Key'))
+os.environ["OPENAI_API_KEY"]=os.getenv('AI_Key')
+
+
+st.title("Gutenberg AI Search")
+st.write("Chat GPT has indexed many books in the open domain but some books were left out")
+st.write("This app lets you past a link to a Project Gutenberg text and then query it with the help of Chat GPT")
+
+st.write("How it Works - The app grabs the text from the URL then chunks the data using langchain. ")
+
+source_url="https://www.gutenberg.org/cache/epub/1232/pg1232-images.html"
+st.write(source_url)
+
+
+st.write("Please enter a URL with a link to Gutenberg book")
+st_url=st.text_input("Enter URL")
+if st.button("Fetch File"):
+    source_url=st_url
+    st.write("The url is ", source_url)
+
+    #Once the work is done, show an input box
+    st_question=st.text_input("Please ask a question about the book")
+    #st.write(rag_chain.invoke(text_input)
+
 
 
 #Load, chunk and index blog content
 #source_url="https://lilianweng.github.io/posts/2023-06-23-agent/"
-source_url="https://www.gutenberg.org/cache/epub/3176/pg3176-images.html"
+#source_url="https://www.gutenberg.org/cache/epub/3176/pg3176-images.html"
 loader=WebBaseLoader(
     web_paths=(source_url,),
     bs_kwargs=dict(
@@ -27,7 +59,7 @@ loader=WebBaseLoader(
 #docs=bs4.BeautifulSoup(html_doc,'html.parser')
 
 docs = loader.load()
-print(docs[0])
+#print(docs[0])
 
 text_splitter=RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200)
 splits=text_splitter.split_documents(docs)
