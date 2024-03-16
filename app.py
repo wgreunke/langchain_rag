@@ -12,7 +12,9 @@ import os
 # Load environment variables
 load_dotenv()
 
-os.environ["OPENAI_API_KEY"]=os.getenv('AI_Key')
+#os.environ["OPENAI_API_KEY"]=os.getenv('AI_Key')
+os.environ["OPENAI_API_KEY"]=secrets["GPT_Key"]
+
 
 # Define function to format documents
 def format_docs(docs):
@@ -27,7 +29,7 @@ def main():
     st.link_button("Go to Gutenberg Library", "https://www.gutenberg.org")
     st.write("image")
     # Ask user for URL input
-    url = st.text_input("Enter URL",value="https://littlesunnykitchen.com/marry-me-chicken/")
+    url = st.text_input("Enter URL")
 
     # Fetch file button
     if st.button("Fetch Book"):
