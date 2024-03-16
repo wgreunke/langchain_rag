@@ -40,7 +40,7 @@ st.write(source_url)
 
 
 st.write("Please enter a URL with a link to Gutenberg book")
-st_url=st.text_input("Enter URL")
+st_url=st.text_input("Enter URL",value=source_url,key="st_url_key")
 
 
 if st.button("Fetch File"):
@@ -91,7 +91,9 @@ if st.button("Fetch File"):
 
 query_count=0
 
-if st.session_state['model_built']==True:    
-    while query_count<10:
-        st_question=st.text_input("Please ask a question about the book")
-        st.write(rag_chain.invoke(st_question))
+st.session_state['model_built']==True
+st_question=st.text_input("Please ask a question about the book",key="st_question_key",value="Ask a question")
+    
+if st.button("submit Question"):
+    rag_answer=rag_chain.invoke(st_question)
+    st.write(rag_answer)
