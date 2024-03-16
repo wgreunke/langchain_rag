@@ -21,14 +21,16 @@ def format_docs(docs):
 # Define Streamlit app
 def main():
     st.title("Gutenberg AI Search")
-    st.write("This app retrieves text from a URL and allows you to ask questions about the loaded data using ChatGPT.")
-
+    st.write("ChatGpt allows you to query many books that are in the public domain howerver there are some books in Project Gutemberg that were not included in the model.")
+    st.write("This app uses the text from a book in the Gutenberg library and allows you query the book just like ChatGPT.")
+    st.write("To start, go to the Gutenberg Library, find a book and copy the Read Online URL to a book you want to query.")
+    st.link_button("Go to Gutenberg Library", "https://www.gutenberg.org")
+    st.write("image")
     # Ask user for URL input
-    st.write("Please enter a URL with a link to Gutenberg book:")
     url = st.text_input("Enter URL",value="https://littlesunnykitchen.com/marry-me-chicken/")
 
     # Fetch file button
-    if st.button("Fetch File"):
+    if st.button("Fetch Book"):
         with st.spinner("Fetching data from the URL..."):
             # Load, chunk, and index blog content
             loader = WebBaseLoader(web_paths=(url,))
@@ -51,8 +53,8 @@ def main():
         st.success("Data fetched successfully!")
 
     # Allow user to ask questions
-    st.write("Please ask questions about the book:")
-    question = st.text_area("Enter question:")
+    #st.write("Please ask a question about the book:")
+    question = st.text_input("Enter question:")
 
     # Submit question button
     if st.button("Submit Question"):
