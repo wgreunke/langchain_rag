@@ -27,7 +27,9 @@ def main():
     st.write("This app uses the text from a book in the Gutenberg library and allows you query the book just like ChatGPT.")
     st.write("To start, go to the Gutenberg Library, find a book and copy the Read Online URL to a book you want to query.")
     st.link_button("Go to Gutenberg Library", "https://www.gutenberg.org")
-    st.write("image")
+    st.write("Sample Book")
+    st.wriate("https://www.gutenberg.org/cache/epub/73170/pg73170-images.html")
+    #st.write("image")
     # Ask user for URL input
     url = st.text_input("Enter URL")
 
