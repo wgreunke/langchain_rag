@@ -2,5 +2,8 @@ langchain
 langchain-community 
 langchainhub 
 langchain-openai 
+#Problems with the Chroma DB
+#https://stackoverflow.com/questions/76958817/streamlit-your-system-has-an-unsupported-version-of-sqlite3-chroma-requires-sq
 chromadb 
+pysqlite3-binary
 bs4
