@@ -30,6 +30,7 @@ def format_docs(docs):
 def main():
     st.title("Gutenberg AI Search")
     st.write("ChatGpt allows you to query many books that are in the public domain howerver there are some books in Project Gutemberg that were not included in the model.")
+    st.write("Created by Ward Greunke [link](https://www.linkedin.com/in/wgreunke/)")
     st.write("This app uses the text from a book in the Gutenberg library and allows you query the book just like ChatGPT.")
     st.write("To start, go to the Gutenberg Library, find a book and copy the Read Online URL to a book you want to query.")
     st.link_button("Go to Gutenberg Library", "https://www.gutenberg.org")
