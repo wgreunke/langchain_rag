@@ -13,7 +13,7 @@ import os
 load_dotenv()
 
 #os.environ["OPENAI_API_KEY"]=os.getenv('AI_Key')
-os.environ["OPENAI_API_KEY"]=secrets["GPT_Key"]
+os.environ["OPENAI_API_KEY"]=st.secrets["GPT_Key"]
 
 
 # Define function to format documents
