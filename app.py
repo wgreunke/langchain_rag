@@ -70,30 +70,29 @@ if st.button("Fetch File"):
     retriever = vectorstore.as_retriever()
     prompt=hub.pull("rlm/rag-prompt")
     llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
-
+    st.session_state['model_built']=True
+    st.write("Session state changed")
     rag_chain=(
         {"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt
         | llm
         | StrOutputParser()
-    )
-    #If you get this far than the model has been created.  Now you can show the loop for the query
-    st.session_state['model_built']=True
+        )
+        #If you get this far than the model has been created.  Now you can show the loop for the query
+    st.write("Rag chain is created")
+    st.write(rag_chain)
 
-#print(rag_chain.invoke("What is Task Decomposition"))
-#print(rag_chain.invoke("What was the itenerary of the trip?"))
+    query_counter=0
+    while query_counter <=10:
+        st_question=st.text_input("Please ask a question about the book")
+        if st_question:
+            rag_answer=rag_chain.invoke(st_question)
+            st.write(rag_answer)
 
 
-#while text_input !="quit":
-    #text_input=input("Ask me a question\n")
-    #print(rag_chain.invoke(text_input))
-#Once the work is done, show an input box
 
-query_count=0
 
-st.session_state['model_built']==True
-st_question=st.text_input("Please ask a question about the book",key="st_question_key",value="Ask a question")
+#query_count=0
+
+#if st.session_state['model_built']==True:
     
-if st.button("submit Question"):
-    rag_answer=rag_chain.invoke(st_question)
-    st.write(rag_answer)
