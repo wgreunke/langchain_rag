@@ -1,3 +1,6 @@
+#https://stackoverflow.com/questions/76958817/streamlit-your-system-has-an-unsupported-version-of-sqlite3-chroma-requires-sq
+#Problme with Chroma
+
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
