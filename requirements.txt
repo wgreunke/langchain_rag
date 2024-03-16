@@ -4,3 +4,5 @@ langchainhub
 langchain-openai 
 chromadb 
 bs4
+pysqlite3-binary
+
